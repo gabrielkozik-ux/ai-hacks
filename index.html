@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tahák | 2 hacky pro vaši práci</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom styles for the toggle switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #2563EB;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #2563EB;
+        }
+        .toggle-checkbox {
+            right: 4px;
+            z-index: 1;
+            border-color: #e5e7eb;
+            transition: all 0.3s;
+        }
+        .toggle-label {
+            width: 3rem;
+            height: 1.5rem;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            transition: all 0.3s;
+        }
+        .switch-ball {
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+        .toggle-checkbox:checked + .toggle-label .switch-ball {
+            transform: translateX(1.5rem);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-blue-200">
+
+    <!-- Main Container (Mobile First) -->
+    <main class="max-w-md mx-auto bg-white min-h-screen shadow-xl relative pb-12">
+        
+        <!-- Header -->
+        <header class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-b-3xl shadow-md">
+            <h1 class="text-3xl font-bold leading-tight mb-3">2 AI hacky, které vám dnes ušetří hodinu práce.</h1>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                Dnešní ochutnávka z workshopu. Zkopírujte si šablony a rovnou je vyzkoušejte ve svém oblíbeném AI nástroji.
+            </p>
+        </header>
+
+        <!-- Hack 1: Pravidlo kontextu -->
+        <section class="p-6 mt-2">
+            <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="zap" class="text-yellow-500 w-6 h-6"></i>
+                <h2 class="text-xl font-bold">Tahák #1: Generický vstup = Generický výstup</h2>
+            </div>
+            <p class="text-sm text-gray-600 mb-5">
+                AI je jako iniciativní koncipient. Pokud jí nedáte mantinely, začne si vymýšlet nebo produkovat nudnou vatu.
+            </p>
+
+            <!-- Mad Libs Generator -->
+            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                <p class="text-xs font-semibold text-blue-800 uppercase tracking-wider mb-3">Sestavte si prompt:</p>
+                
+                <div class="space-y-3 mb-4">
+                    <div>
+                        <label class="block text-xs text-gray-500 mb-1">Role</label>
+                        <select id="select-role" class="w-full text-sm p-2 rounded border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="zkušený markeťák">Zkušený markeťák</option>
+                            <option value="precizní právník">Precizní právník</option>
+                            <option value="empatický HR specialista">Empatický HR specialista</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-500 mb-1">Cílovka</label>
+                        <select id="select-audience" class="w-full text-sm p-2 rounded border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="majitelé malých firem">Majitelé malých firem</option>
+                            <option value="noví zaměstnanci">Noví zaměstnanci</option>
+                            <option value="potenciální investoři">Potenciální investoři</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-500 mb-1">Úkol</label>
+                        <select id="select-task" class="w-full text-sm p-2 rounded border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="napsat zvací e-mail na networking">Napsat zvací e-mail na networking</option>
+                            <option value="vytvořit příspěvek na LinkedIn">Vytvořit příspěvek na LinkedIn</option>
+                            <option value="sepsat shrnutí schůzky">Sepsat shrnutí schůzky</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Dynamic Output -->
+                <div class="relative">
+                    <textarea id="prompt1-output" readonly class="w-full h-32 p-3 text-sm bg-white border border-gray-200 rounded-lg text-gray-700 resize-none focus:outline-none leading-relaxed"></textarea>
+                    
+                    <button onclick="copyText('prompt1-output', 'btn-copy-1')" id="btn-copy-1" class="w-full mt-2 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors text-sm shadow-sm">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Zkopírovat prompt jedním klikem</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-100 mx-6">
+
+        <!-- Hack 2: Ďáblův advokát -->
+        <section class="p-6">
+            <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="shield-alert" class="text-red-500 w-6 h-6"></i>
+                <h2 class="text-xl font-bold">Tahák #2: Ďáblův advokát</h2>
+            </div>
+            <p class="text-sm text-gray-600 mb-5">
+                AI je z výroby nastavena jako nekritický kamarád v hospodě, který vám pochválí každý nesmysl. Tímto ji přepnete do módu nemilosrdného analytika.
+            </p>
+
+            <!-- Toggle Before/After -->
+            <div class="bg-gray-100 p-4 rounded-xl border border-gray-200 mb-5">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm font-medium text-gray-700" id="toggle-text">Nekritický kamarád</span>
+                    
+                    <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                        <input type="checkbox" name="toggle" id="ai-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer opacity-0"/>
+                        <label for="ai-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer relative">
+                            <span class="switch-ball"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- View: Before -->
+                <div id="view-before" class="transition-opacity duration-300">
+                    <div class="bg-white p-3 rounded shadow-sm text-sm border-l-4 border-gray-300 mb-2">
+                        <span class="font-bold text-xs text-gray-400 block mb-1">VÁŠ NÁPAD</span>
+                        Budeme prodávat zmrzlinu v prosinci.
+                    </div>
+                    <div class="bg-green-50 p-3 rounded shadow-sm text-sm border-l-4 border-green-400">
+                        <span class="font-bold text-xs text-green-600 block mb-1">ODPOVĚĎ AI</span>
+                        Skvělý nápad! Lidé milují sladké celoročně a zimní edice zmrzliny může být obrovský hit...
+                    </div>
+                </div>
+
+                <!-- View: After (Hidden by default) -->
+                <div id="view-after" class="hidden transition-opacity duration-300">
+                    <div class="bg-white p-3 rounded shadow-sm text-sm border-l-4 border-gray-300 mb-2">
+                        <span class="font-bold text-xs text-gray-400 block mb-1">VÁŠ NÁPAD</span>
+                        Budeme prodávat zmrzlinu v prosinci.
+                    </div>
+                    <div class="bg-red-50 p-3 rounded shadow-sm text-sm border-l-4 border-red-500">
+                        <span class="font-bold text-xs text-red-600 block mb-1">ODPOVĚĎ AI</span>
+                        Kritické riziko. Zde jsou 3 důvody, proč to na vašem trhu pravděpodobně selže: 1. Náklady na energie, 2. Nízký foot traffic...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyable Prompt -->
+            <div class="relative">
+                <p class="text-xs font-semibold text-gray-800 uppercase tracking-wider mb-2">Ukradněte si tento prompt:</p>
+                <textarea id="prompt2-output" readonly class="w-full h-40 p-3 text-sm bg-slate-900 text-green-400 font-mono border border-slate-700 rounded-lg resize-none focus:outline-none leading-relaxed">Tímto příkazem měníš systémovou roli. Dáváš povolení být negativní, skeptický a hledat chyby. Vypínáš filtry 'buď milý', zapínáš filtry 'buď logický a kritický'. Zhodnoť můj následující nápad:
+
+[ZDE VLOŽTE SVŮJ NÁPAD, NAPŘ: Chci investovat 50 tisíc do nového CRM systému / Chci otevřít druhou pobočku v menším městě]</textarea>
+                
+                <button onclick="copyText('prompt2-output', 'btn-copy-2')" id="btn-copy-2" class="w-full mt-2 flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-900 text-white py-3 px-4 rounded-lg font-medium transition-colors text-sm shadow-sm">
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                    <span>Zkopírovat prompt jedním klikem</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="p-6 bg-blue-50 mt-6 rounded-t-3xl border-t border-blue-100">
+            <h2 class="text-2xl font-bold mb-3 text-center">Chcete jít víc do hloubky?</h2>
+            <p class="text-sm text-gray-600 mb-6 text-center">
+                Tohle byl jen začátek. Správná implementace AI nástrojů do vaší každodenní praxe dokáže ušetřit desítky hodin měsíčně – ať už jste freelancer na volné noze, nebo vedete celý tým. Pojďme umělou inteligenci zapojit do vaší práce systematicky a chytře.
+            </p>
+
+            <!-- Main CTA -->
+            <a href="#calendly-or-form-link" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-bold py-4 px-4 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 mb-4">
+                Chci zefektivnit svou práci pomocí AI
+            </a>
+
+            <!-- Secondary CTA -->
+            <a href="https://linkedin.com/in/tvuj-profil" target="_blank" class="flex items-center justify-center gap-2 w-full text-blue-700 hover:text-blue-900 font-medium py-2 text-sm">
+                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                Propojit se na LinkedIn
+            </a>
+        </section>
+
+    </main>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Logic for Tahák #1 (Dynamic Prompt Generator)
+        const roleSelect = document.getElementById('select-role');
+        const audienceSelect = document.getElementById('select-audience');
+        const taskSelect = document.getElementById('select-task');
+        const prompt1Output = document.getElementById('prompt1-output');
+
+        function updatePrompt1() {
+            const role = roleSelect.value;
+            const audience = audienceSelect.value;
+            const task = taskSelect.value;
+            
+            prompt1Output.value = `Role: Jsi ${role}.\n\nCílovka: ${audience}.\n\nÚkol: ${task}.\n\nKontext: Vyhni se klišé, piš stručně a buď formální, ale přátelský.`;
+        }
+
+        // Event listeners for dropdowns
+        roleSelect.addEventListener('change', updatePrompt1);
+        audienceSelect.addEventListener('change', updatePrompt1);
+        taskSelect.addEventListener('change', updatePrompt1);
+        
+        // Initial generation
+        updatePrompt1();
+
+        // Logic for Tahák #2 (Toggle Before/After)
+        const toggleBtn = document.getElementById('ai-toggle');
+        const viewBefore = document.getElementById('view-before');
+        const viewAfter = document.getElementById('view-after');
+        const toggleText = document.getElementById('toggle-text');
+
+        toggleBtn.addEventListener('change', (e) => {
+            if(e.target.checked) {
+                viewBefore.classList.add('hidden');
+                viewAfter.classList.remove('hidden');
+                toggleText.innerText = "Ďáblův advokát";
+                toggleText.classList.add('text-red-600');
+                toggleText.classList.remove('text-gray-700');
+            } else {
+                viewBefore.classList.remove('hidden');
+                viewAfter.classList.add('hidden');
+                toggleText.innerText = "Nekritický kamarád";
+                toggleText.classList.remove('text-red-600');
+                toggleText.classList.add('text-gray-700');
+            }
+        });
+
+        // Copy to clipboard function
+        function copyText(elementId, btnId) {
+            const copyTextarea = document.getElementById(elementId);
+            const btn = document.getElementById(btnId);
+            const originalHtml = btn.innerHTML;
+
+            // Select the text field
+            copyTextarea.select();
+            copyTextarea.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                // Copy the text inside the text field
+                document.execCommand("copy");
+                
+                // Visual feedback
+                btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Zkopírováno ✅</span>`;
+                btn.classList.replace('bg-blue-600', 'bg-green-600');
+                btn.classList.replace('hover:bg-blue-700', 'hover:bg-green-700');
+                btn.classList.replace('bg-slate-800', 'bg-green-600');
+                btn.classList.replace('hover:bg-slate-900', 'hover:bg-green-700');
+                lucide.createIcons();
+
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.classList.replace('bg-green-600', 'bg-blue-600');
+                    btn.classList.replace('hover:bg-green-700', 'hover:bg-blue-700');
+                    // Reset slate classes if it was the second button
+                    if(btnId === 'btn-copy-2') {
+                         btn.classList.replace('bg-blue-600', 'bg-slate-800');
+                         btn.classList.replace('hover:bg-blue-700', 'hover:bg-slate-900');
+                    }
+                    lucide.createIcons();
+                }, 2500);
+
+            } catch (err) {
+                alert('Jejda, kopírování selhalo. Prosím, zkopírujte text ručně.');
+            }
+            
+            // Deselect
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+</body>
+</html>
