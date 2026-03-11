@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,28 +10,39 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Speciální styly pro interaktivní prvky lead magnetu */
-        body { padding-top: 0; } /* Zruseni paddingu pro fixni menu, ktere tu nemame fixni */
-        
-        .main-nav { position: relative; } /* Není fixní na lead magnetu */
+        body {
+            padding-top: 0;
+        }
+
+        /* Zruseni paddingu pro fixni menu, ktere tu nemame fixni */
+
+        .main-nav {
+            position: relative;
+        }
+
+        /* Není fixní na lead magnetu */
 
         .calculator-container {
             background: var(--white);
             padding: 40px;
             border-radius: 16px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
             max-width: 800px;
             margin: 0 auto;
             border: 1px solid rgba(226, 232, 240, 0.8);
         }
+
         .slider-wrapper {
             margin: 30px 0;
             text-align: center;
         }
+
         input[type=range] {
             width: 100%;
             max-width: 500px;
             accent-color: var(--secondary-color);
         }
+
         .roi-result {
             font-size: 2.5em;
             font-family: 'Space Grotesk', sans-serif;
@@ -38,10 +50,12 @@
             font-weight: 700;
             margin: 20px 0;
         }
+
         .roi-text {
             font-size: 1.2em;
             color: var(--text-color);
         }
+
         .interactive-box {
             background: var(--light-gray);
             border-radius: 12px;
@@ -49,46 +63,55 @@
             margin-bottom: 25px;
             border-left: 4px solid var(--secondary-color);
         }
+
         .hack-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
         }
+
         @media (min-width: 768px) {
             .hack-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
-        
+
         /* Toggle Switch pro Ďáblova advokáta */
         .switch-toggle-wrapper {
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 20px; 
-            font-weight: bold; 
-            font-size: 1.2em; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
             margin-bottom: 30px;
         }
+
         .switch-toggle {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 34px;
         }
-        .switch-toggle input { 
+
+        .switch-toggle input {
             opacity: 0;
             width: 0;
             height: 0;
         }
+
         .slider-toggle {
             position: absolute;
             cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-color: #ccc;
             transition: .4s;
             border-radius: 34px;
         }
+
         .slider-toggle:before {
             position: absolute;
             content: "";
@@ -100,12 +123,15 @@
             transition: .4s;
             border-radius: 50%;
         }
-        input:checked + .slider-toggle {
+
+        input:checked+.slider-toggle {
             background-color: var(--secondary-color);
         }
-        input:checked + .slider-toggle:before {
+
+        input:checked+.slider-toggle:before {
             transform: translateX(26px);
         }
+
         .df-result-box {
             background: var(--white);
             padding: 20px;
@@ -114,14 +140,19 @@
             margin-top: 15px;
             min-height: 100px;
         }
+
         .df-result-box.critical {
-            border-left-color: #ef4444; /* red */
+            border-left-color: #ef4444;
+            /* red */
             background: #fef2f2;
         }
+
         .df-result-box.friendly {
-            border-left-color: #10b981; /* green */
+            border-left-color: #10b981;
+            /* green */
             background: #f0fdf4;
         }
+
         .df-label {
             font-size: 0.8em;
             font-weight: bold;
@@ -132,6 +163,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Main Nav -->
@@ -146,7 +178,8 @@
                     <a href="#o-mne">Konference</a>
                     <a href="#interaktivni-hacky">AI Hacky</a>
                     <a href="#kalkulacka">Kalkulačka času</a>
-                    <a href="#lead-magnet" class="cta-button" style="font-size: 0.8em; padding: 10px 20px; margin-left: 15px;">Stáhnout příručku</a>
+                    <a href="#lead-magnet" class="cta-button"
+                        style="font-size: 0.8em; padding: 10px 20px; margin-left: 15px;">Stáhnout příručku</a>
                 </div>
             </div>
         </div>
@@ -156,10 +189,12 @@
     <header class="hero">
         <div class="container text-center">
             <h1>Jak mluvit s AI a nenaletět <br>na "halucinace"</h1>
-            <p style="margin-bottom: 40px;">Získejte KPZ příručku a naučte se 2 funkční hacky, které vám ušetří desítky hodin měsíčně. Oficiální materiály k workshopu pro konferenci Nové začátky 2026.</p>
+            <p style="margin-bottom: 40px;">Získejte KPZ příručku a naučte se 2 funkční hacky, které vám ušetří desítky
+                hodin měsíčně. Oficiální materiály k workshopu pro konferenci Nové začátky 2026.</p>
             <div>
                 <a href="#interaktivni-hacky" class="cta-button">Vyzkoušet AI Hacky online</a>
-                <a href="#lead-magnet" class="cta-button secondary" style="margin-left: 15px; color: white; border-color: white;">Stáhnout PDF zdarma</a>
+                <a href="#lead-magnet" class="cta-button secondary"
+                    style="margin-left: 15px; color: white; border-color: white;">Stáhnout PDF zdarma</a>
             </div>
         </div>
     </header>
@@ -169,17 +204,23 @@
         <h2 class="section-title">Kdo vás provede AI světem?</h2>
         <div class="about-container hack-grid" style="align-items: center; text-align: left;">
             <div style="text-align: center;">
-                <img src="https://placehold.co/280x280/0ea5e9/ffffff?text=Gabriel+Kozik" alt="Gabriel Kožík" class="about-photo-circle" style="width: 280px; height: 280px; margin: 0 auto;">
+                <img src="profilova-fotka.jpg" alt="Gabriel Kožík" class="about-photo-circle"
+                    style="width: 280px; height: 280px; margin: 0 auto; object-position: top;">
             </div>
             <div>
                 <h3 style="font-size: 2em; margin-bottom: 10px; margin-top: 0;">Mgr. Gabriel Kožík</h3>
-                <p style="font-size: 1.1em; color: var(--secondary-color); font-weight: bold; margin-bottom: 20px;">Advokát pro váš byznys | Lektor generativního AI</p>
-                <p>AI není jen "lepší vyhledávač". Je to váš nový, neuvěřitelně schopný stážista – pokud ho umíte správně řídit. Jinak si začne sebevědomě vymýšlet (halucinovat) a nadělá víc škody než užitku.</p>
-                
+                <p style="font-size: 1.1em; color: var(--secondary-color); font-weight: bold; margin-bottom: 20px;">
+                    Advokát pro váš byznys | Lektor generativního AI</p>
+                <p>AI není jen "lepší vyhledávač". Je to váš nový, neuvěřitelně schopný stážista – pokud ho umíte
+                    správně řídit. Jinak si začne sebevědomě vymýšlet (halucinovat) a nadělá víc škody než užitku.</p>
+
                 <div class="interactive-box" style="margin-top: 30px;">
                     <h4 style="margin-top:0">Těším se na vás na konferenci Nové začátky 2026!</h4>
-                    <p style="font-size: 0.95em;">Tento web slouží jako podklad k mé přednášce a workshopu o praktickém využití AI na brněnské konferenci. Objevíme reálné use-cases, jak zefektivnit firemní procesy a nezbláznit se z toho.</p>
-                    <a href="https://novezacatky.cz/konference-2026/" target="_blank" class="read-more-btn">Více o konferenci a programu</a>
+                    <p style="font-size: 0.95em;">Tento web slouží jako podklad k mé přednášce a workshopu o praktickém
+                        využití AI na brněnské konferenci. Objevíme reálné use-cases, jak zefektivnit firemní procesy a
+                        nezbláznit se z toho.</p>
+                    <a href="https://novezacatky.cz/konference-2026/" target="_blank" class="read-more-btn">Více o
+                        konferenci a programu</a>
                 </div>
             </div>
         </div>
@@ -189,50 +230,76 @@
     <section id="interaktivni-hacky" class="workshop-section">
         <div class="container">
             <h2 class="section-title">Tahák #1: Generický vstup = Generický výstup</h2>
-            <p class="section-subtitle">AI dělá to, k čemu je natrénovaná – snaží se něco doplnit. Pokud jí nedáte kontext, vaří z vody. Vyzkoušejte si správnou anatomii promptu.</p>
-            
+            <p class="section-subtitle">AI dělá to, k čemu je natrénovaná – snaží se něco doplnit. Pokud jí nedáte
+                kontext, vaří z vody. Vyzkoušejte si správnou anatomii promptu.</p>
+
             <div class="calculator-container" style="max-width: 1000px;">
                 <div class="hack-grid">
                     <div>
                         <h3 style="margin-top:0;">Sestavte si prompt krok za krokem:</h3>
-                        <form class="form-container" style="padding: 0; box-shadow: none; max-width: 100%; border: none;">
-                            <label style="margin-bottom: 5px; display: block; font-weight: 600;">1) Kdo jsi (Role):</label>
+                        <form class="form-container"
+                            style="padding: 0; box-shadow: none; max-width: 100%; border: none;">
+                            <label style="margin-bottom: 5px; display: block; font-weight: 600;">1) Kdo jsi
+                                (Role):</label>
                             <select id="select-role" class="form-input" style="margin-bottom: 15px; padding: 10px;">
-                                <option value="seniorní marketingový konzultant pro B2B služby">Seniorní markeťák pro B2B</option>
-                                <option value="advokát se specializací na obchodní právo, ne jmenovitě, ale stylem uvažování">Precizní advokát</option>
+                                <option value="seniorní marketingový konzultant pro B2B služby">Seniorní markeťák pro
+                                    B2B</option>
+                                <option
+                                    value="advokát se specializací na obchodní právo, ne jmenovitě, ale stylem uvažování">
+                                    Precizní advokát</option>
                                 <option value="zkušený účetní, který umí mluvit lidsky">Zkušený účetní (lidsky)</option>
                             </select>
 
-                            <label style="margin-bottom: 5px; display: block; font-weight: 600;">2) Co chci (Cíl):</label>
+                            <label style="margin-bottom: 5px; display: block; font-weight: 600;">2) Co chci
+                                (Cíl):</label>
                             <select id="select-task" class="form-input" style="margin-bottom: 15px; padding: 10px;">
-                                <option value="návrh e-mailu, kterým slušně, ale důrazně připomenu nezaplacenou fakturu">Připomenout nezaplacenou fakturu</option>
-                                <option value="návrh smysluplného teambuildingu pro menší firmu">Navrhnout teambuilding</option>
-                                <option value="analýzu rizik tohoto nového podnikatelského záměru">Zanalyzovat rizika</option>
+                                <option
+                                    value="návrh e-mailu, kterým slušně, ale důrazně připomenu nezaplacenou fakturu">
+                                    Připomenout nezaplacenou fakturu</option>
+                                <option value="návrh smysluplného teambuildingu pro menší firmu">Navrhnout teambuilding
+                                </option>
+                                <option value="analýzu rizik tohoto nového podnikatelského záměru">Zanalyzovat rizika
+                                </option>
                             </select>
 
-                            <label style="margin-bottom: 5px; display: block; font-weight: 600;">3) Kontext (Publikum/Omezení):</label>
+                            <label style="margin-bottom: 5px; display: block; font-weight: 600;">3) Kontext
+                                (Publikum/Omezení):</label>
                             <select id="select-audience" class="form-input" style="margin-bottom: 15px; padding: 10px;">
-                                <option value="Adresát je majitel malé firmy v ČR, chceme se vyhnout korporátním frázím.">Majitel malé firmy (bez korpo frází)</option>
-                                <option value="Cílovou skupinou je čerstvý absolvent, potřebuje to vysvětlit velmi jednoduše a na praktických příkladech.">Absolvent (jednoduše s příklady)</option>
-                                <option value="Příjemcem je vedení nadnárodní společnosti, musíme dodržet striktně formální tón a argumentovat čísly.">Vedení korporace (striktně formálně)</option>
+                                <option
+                                    value="Adresát je majitel malé firmy v ČR, chceme se vyhnout korporátním frázím.">
+                                    Majitel malé firmy (bez korpo frází)</option>
+                                <option
+                                    value="Cílovou skupinou je čerstvý absolvent, potřebuje to vysvětlit velmi jednoduše a na praktických příkladech.">
+                                    Absolvent (jednoduše s příklady)</option>
+                                <option
+                                    value="Příjemcem je vedení nadnárodní společnosti, musíme dodržet striktně formální tón a argumentovat čísly.">
+                                    Vedení korporace (striktně formálně)</option>
                             </select>
 
                             <label style="margin-bottom: 5px; display: block; font-weight: 600;">4) Formát:</label>
                             <select id="select-format" class="form-input" style="margin-bottom: 15px; padding: 10px;">
-                                <option value="Česky, formální e-mail, max 200 slov, s jasnou výzvou k akci na konci">Krátký e-mail s CTA</option>
-                                <option value="Strukturovaný text s 5 nápady do odrazek, seřazeno od nejlevnějšího">5 odrážek podle ceny</option>
-                                <option value="Tabulka se sloupci: Název, Výhoda, Nevýhoda, Cena">Přehledná tabulka</option>
+                                <option value="Česky, formální e-mail, max 200 slov, s jasnou výzvou k akci na konci">
+                                    Krátký e-mail s CTA</option>
+                                <option value="Strukturovaný text s 5 nápady do odrazek, seřazeno od nejlevnějšího">5
+                                    odrážek podle ceny</option>
+                                <option value="Tabulka se sloupci: Název, Výhoda, Nevýhoda, Cena">Přehledná tabulka
+                                </option>
                             </select>
                         </form>
                     </div>
-                    
-                    <div style="background: var(--light-gray); padding: 25px; border-radius: 12px; display: flex; flex-direction: column;">
+
+                    <div
+                        style="background: var(--light-gray); padding: 25px; border-radius: 12px; display: flex; flex-direction: column;">
                         <h3 style="margin-top:0; color: var(--accent-color);">Výsledný super-prompt:</h3>
-                        <p style="font-size: 0.9em; margin-bottom: 15px;">Tento text si zkopírujte rovnou do ChatGPT nebo Claude.</p>
-                        
-                        <textarea id="prompt1-output" class="form-textarea" style="flex-grow: 1; resize: none; font-family: monospace; background: var(--white); font-size: 0.95em; line-height: 1.5;" readonly></textarea>
-                        
-                        <button onclick="copyText('prompt1-output', 'btn-copy-1')" id="btn-copy-1" class="cta-button" style="width: 100%; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; border: none;">
+                        <p style="font-size: 0.9em; margin-bottom: 15px;">Tento text si zkopírujte rovnou do ChatGPT
+                            nebo Claude.</p>
+
+                        <textarea id="prompt1-output" class="form-textarea"
+                            style="flex-grow: 1; resize: none; font-family: monospace; background: var(--white); font-size: 0.95em; line-height: 1.5;"
+                            readonly></textarea>
+
+                        <button onclick="copyText('prompt1-output', 'btn-copy-1')" id="btn-copy-1" class="cta-button"
+                            style="width: 100%; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; border: none;">
                             <i data-lucide="copy" style="width: 18px;"></i>
                             Zkopírovat prompt
                         </button>
@@ -246,7 +313,8 @@
     <section id="hack2">
         <div class="container">
             <h2 class="section-title">Tahák #2: Ďáblův advokát</h2>
-            <p class="section-subtitle">AI je nekritický kamarád v hospodě, který vám pochválí každý nesmysl. Přepněte ji do módu nemilosrdného analytika pomocí jednoduchého triku.</p>
+            <p class="section-subtitle">AI je nekritický kamarád v hospodě, který vám pochválí každý nesmysl. Přepněte
+                ji do módu nemilosrdného analytika pomocí jednoduchého triku.</p>
 
             <div class="calculator-container text-center" style="max-width: 800px;">
                 <div class="switch-toggle-wrapper">
@@ -258,28 +326,44 @@
                     <span id="label-devil" style="color: #64748b; opacity: 0.5;">Ďáblův advokát</span>
                 </div>
 
-                <div style="text-align: left; padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+                <div
+                    style="text-align: left; padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
                     <span class="df-label" style="color: #94a3b8;">Váš nápad:</span>
-                    <p style="font-size: 1.1em; font-weight: bold; margin: 0; color: var(--primary-color);">"Chtěli bychom začít prodávat zmrzlinu v zimní sezóně na venkovních stáncích. Lidé přeci jedí sladké pořád."</p>
+                    <p style="font-size: 1.1em; font-weight: bold; margin: 0; color: var(--primary-color);">"Chtěli
+                        bychom začít prodávat zmrzlinu v zimní sezóně na venkovních stáncích. Lidé přeci jedí sladké
+                        pořád."</p>
                 </div>
 
                 <div id="view-friend" class="df-result-box friendly" style="text-align: left;">
                     <span class="df-label" style="color: #10b981;">Odpověď AI (Výchozí stav):</span>
-                    <p style="margin:0;">Skvělý nápad! Zmrzlina je oblíbený dezert celoročně. Můžete nabídnout speciální zimní edice s příchutí skořice nebo svařeného vína a určitě to přiláká spoustu pozornosti i v zimě a podpoří vánoční atmosféru.</p>
+                    <p style="margin:0;">Skvělý nápad! Zmrzlina je oblíbený dezert celoročně. Můžete nabídnout speciální
+                        zimní edice s příchutí skořice nebo svařeného vína a určitě to přiláká spoustu pozornosti i v
+                        zimě a podpoří vánoční atmosféru.</p>
                 </div>
 
                 <div id="view-devil" class="df-result-box critical" style="display: none; text-align: left;">
                     <span class="df-label" style="color: #ef4444;">Odpověď AI (Ďáblův advokát):</span>
-                    <p style="margin:0;">Kritické riziko. Zde jsou 3 důvody, proč to na trhu pravděpodobně selže: 1/ Nízký foot traffic (lidé venku nemrznou), 2/ Biologie (lidé nemají v zimě chuť zchlazovat organismus), 3/ Náklady na logistiku stánků se nezaplatí z nízkého zisku. Doporučuji raději stánek se svařákem.</p>
+                    <p style="margin:0;">Kritické riziko. Zde jsou 3 důvody, proč to na trhu pravděpodobně selže: 1/
+                        Nízký foot traffic (lidé venku nemrznou), 2/ Biologie (lidé nemají v zimě chuť zchlazovat
+                        organismus), 3/ Náklady na logistiku stánků se nezaplatí z nízkého zisku. Doporučuji raději
+                        stánek se svařákem.</p>
                 </div>
 
-                <div class="interactive-box" style="margin-top: 30px; text-align: left; background: var(--primary-color); border-left-color: var(--accent-color); color: white;">
-                    <p style="font-size: 0.8em; font-weight: bold; text-transform: uppercase; color: #cbd5e1; margin-bottom: 10px; margin-top:0;">Ukradněte si tento prompt:</p>
-                    <textarea id="prompt2-output" class="form-textarea" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #38bdf8; resize: none; font-family: monospace; height: 160px; line-height: 1.5;" readonly>Tímto příkazem měníš systémovou roli. Dáváš si povolení být negativní, skeptický a hledat chyby. Vypni filtry "buď milý a podpoř", zapni filtry "buď logický a kritický". 
+                <div class="interactive-box"
+                    style="margin-top: 30px; text-align: left; background: var(--primary-color); border-left-color: var(--accent-color); color: white;">
+                    <p
+                        style="font-size: 0.8em; font-weight: bold; text-transform: uppercase; color: #cbd5e1; margin-bottom: 10px; margin-top:0;">
+                        Ukradněte si tento prompt:</p>
+                    <textarea id="prompt2-output" class="form-textarea"
+                        style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #38bdf8; resize: none; font-family: monospace; height: 160px; line-height: 1.5;"
+                        readonly>Tímto příkazem měníš systémovou roli. Dáváš si povolení být negativní, skeptický a hledat chyby. Vypni filtry "buď milý a podpoř", zapni filtry "buď logický a kritický". 
 
 Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na kterých to může selhat:
 [ZDE VLOŽTE NÁPAD]</textarea>
-                    <button onclick="copyText('prompt2-output', 'btn-copy-2')" id="btn-copy-2" class="cta-button secondary" style="color: white; border-color: white; width: 100%; margin-top: 15px;">Zkopírovat prompt Ďáblova advokáta</button>
+                    <button onclick="copyText('prompt2-output', 'btn-copy-2')" id="btn-copy-2"
+                        class="cta-button secondary"
+                        style="color: white; border-color: white; width: 100%; margin-top: 15px;">Zkopírovat prompt
+                        Ďáblova advokáta</button>
                 </div>
             </div>
         </div>
@@ -289,10 +373,12 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
     <section id="kalkulacka" class="workshop-section">
         <div class="container text-center">
             <h2 class="section-title">Kalkulačka promarněného času</h2>
-            <p class="section-subtitle">Kolik hodin byste ušetřili na administrativě a rutině, kdybyste do toho správně zapojili AI?</p>
-            
+            <p class="section-subtitle">Kolik hodin byste ušetřili na administrativě a rutině, kdybyste do toho správně
+                zapojili AI?</p>
+
             <div class="calculator-container" style="max-width: 600px;">
-                <p style="font-weight: 600; margin-bottom: 20px;">Zadejte, kolik e-mailů, textů a dotazů vy nebo váš tým řešíte za <b>týden</b>:</p>
+                <p style="font-weight: 600; margin-bottom: 20px;">Zadejte, kolik e-mailů, textů a dotazů vy nebo váš tým
+                    řešíte za <b>týden</b>:</p>
                 <div class="slider-wrapper">
                     <input type="range" id="task-slider" min="10" max="250" value="50" step="10">
                     <div style="font-weight: bold; font-size: 1.8em; color: var(--primary-color); margin-top: 15px;">
@@ -302,61 +388,84 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
 
                 <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 30px 0;">
 
-                <p class="roi-text" style="margin-bottom: 10px;">Správně nastylovaný prompt (žádné pokus-omyl) ušetří na úkolu cca <b>15 minut</b>.</p>
+                <p class="roi-text" style="margin-bottom: 10px;">Správně nastylovaný prompt (žádné pokus-omyl) ušetří na
+                    úkolu cca <b>15 minut</b>.</p>
                 <p class="roi-text">Měsíčně tak ztrácíte nebo naopak můžete ušetřit:</p>
                 <div class="roi-result">
                     <span id="hours-saved">50</span> hodin
                 </div>
-                <p style="font-size: 0.9em; color: #64748b;">(Tj. více než jeden celý pracovní týden dovolené navíc, každý měsíc.)</p>
+                <p style="font-size: 0.9em; color: #64748b;">(Tj. více než jeden celý pracovní týden dovolené navíc,
+                    každý měsíc.)</p>
             </div>
         </div>
     </section>
 
     <!-- Lead Magnet: Stáhnout PDF -->
-    <section id="lead-magnet" class="parallax-separator" style="height: auto; padding: 100px 20px; background-attachment: scroll;">
-        <div class="parallax-content" style="max-width: 850px; text-align: left; background: rgba(15, 23, 42, 0.9); padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+    <section id="lead-magnet" class="parallax-separator"
+        style="height: auto; padding: 100px 20px; background-attachment: scroll;">
+        <div class="parallax-content"
+            style="max-width: 850px; text-align: left; background: rgba(15, 23, 42, 0.9); padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
             <div class="hack-grid" style="align-items: center; gap: 40px;">
                 <div>
-                    <h2 style="text-shadow: none; font-size: 2.2em; text-align: left; margin-top: 0; line-height: 1.2;">Naučte se s AI mluvit jako profík</h2>
-                    <p style="color: #cbd5e1; font-size: 1.1em; margin-bottom: 25px;">Stáhněte si kompletní PDF příručku z konference Nové začátky.</p>
+                    <h2 style="text-shadow: none; font-size: 2.2em; text-align: left; margin-top: 0; line-height: 1.2;">
+                        Naučte se s AI mluvit jako profík</h2>
+                    <p style="color: #cbd5e1; font-size: 1.1em; margin-bottom: 25px;">Stáhněte si kompletní PDF příručku
+                        z konference Nové začátky.</p>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 1.1em;">
-                            <i data-lucide="check-circle" style="color: var(--secondary-color); flex-shrink: 0; margin-top: 2px;"></i>
+                        <li
+                            style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 1.1em;">
+                            <i data-lucide="check-circle"
+                                style="color: var(--secondary-color); flex-shrink: 0; margin-top: 2px;"></i>
                             <b>Metoda kontejnerů</b> pro přesné výstupy.
                         </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 1.1em;">
-                            <i data-lucide="check-circle" style="color: var(--secondary-color); flex-shrink: 0; margin-top: 2px;"></i>
+                        <li
+                            style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 1.1em;">
+                            <i data-lucide="check-circle"
+                                style="color: var(--secondary-color); flex-shrink: 0; margin-top: 2px;"></i>
                             Jak obejít <b>krátkou paměť</b> (kontextové okno) modelů.
                         </li>
                         <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1.1em;">
-                            <i data-lucide="check-circle" style="color: var(--secondary-color); flex-shrink: 0; margin-top: 2px;"></i>
+                            <i data-lucide="check-circle"
+                                style="color: var(--secondary-color); flex-shrink: 0; margin-top: 2px;"></i>
                             <b>Kopírovatelné šablony</b> pro okamžité použití.
                         </li>
                     </ul>
                 </div>
                 <div>
                     <!-- Formulář na stažení -->
-                    <div style="background: var(--white); padding: 35px; border-radius: 12px; color: var(--primary-color); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                    <div
+                        style="background: var(--white); padding: 35px; border-radius: 12px; color: var(--primary-color); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                         <div id="form-state">
-                            <h3 style="margin-top: 0; font-size: 1.4em; text-align: center; margin-bottom: 25px;">Získat PDF zdarma</h3>
-                            <form id="lead-form" class="form-container" style="padding: 0; box-shadow: none; border: none; max-width: 100%;">
+                            <h3 style="margin-top: 0; font-size: 1.4em; text-align: center; margin-bottom: 25px;">Získat
+                                PDF zdarma</h3>
+                            <form id="lead-form" class="form-container"
+                                style="padding: 0; box-shadow: none; border: none; max-width: 100%;">
                                 <div style="margin-bottom: 20px;">
-                                    <label style="font-size: 0.9em; margin-bottom: 8px; font-weight: 600;">Zašleme vám ji na e-mail:</label>
-                                    <input type="email" required placeholder="např. jan.novak@firma.cz" class="form-input" style="padding: 14px;">
+                                    <label style="font-size: 0.9em; margin-bottom: 8px; font-weight: 600;">Zašleme vám
+                                        ji na e-mail:</label>
+                                    <input type="email" required placeholder="např. jan.novak@firma.cz"
+                                        class="form-input" style="padding: 14px;">
                                 </div>
-                                <button type="submit" class="cta-button" style="width: 100%; font-size: 1.1em; padding: 15px; border: none; display: flex; justify-content: center; gap: 10px; align-items: center;">
+                                <button type="submit" class="cta-button"
+                                    style="width: 100%; font-size: 1.1em; padding: 15px; border: none; display: flex; justify-content: center; gap: 10px; align-items: center;">
                                     <i data-lucide="mail"></i> Odeslat příručku
                                 </button>
-                                <p style="font-size: 0.75em; color: #64748b; margin-top: 15px; text-align: center;">Souhlasíte se zpracováním osobních údajů. Z odběru tipů se můžete kdykoliv odhlásit.</p>
+                                <p style="font-size: 0.75em; color: #64748b; margin-top: 15px; text-align: center;">
+                                    Souhlasíte se zpracováním osobních údajů. Z odběru tipů se můžete kdykoliv odhlásit.
+                                </p>
                             </form>
                         </div>
-                        
+
                         <!-- Success message po odeslání -->
                         <div id="success-state" style="display: none; text-align: center; padding: 10px 0;">
-                            <i data-lucide="check-circle-2" style="color: #10b981; width: 56px; height: 56px; margin: 0 auto 15px;"></i>
+                            <i data-lucide="check-circle-2"
+                                style="color: #10b981; width: 56px; height: 56px; margin: 0 auto 15px;"></i>
                             <h3 style="margin: 0 0 10px; font-size: 1.5em;">Máte to v e-mailu!</h3>
-                            <p style="font-size: 1em; color: #64748b; margin-bottom: 25px;">Za pár minut očekávejte e-mail s odkazem. Pokud spěcháte, rovnou si ji stáhněte tady:</p>
-                            <a href="jak-mluvit-s-AI-KPZ-prirucka.pdf" download class="cta-button" style="background: var(--primary-color); width: 100%; box-shadow: none; font-size: 1.1em;">Stáhnout teď hned (.pdf)</a>
+                            <p style="font-size: 1em; color: #64748b; margin-bottom: 25px;">Za pár minut očekávejte
+                                e-mail s odkazem. Pokud spěcháte, rovnou si ji stáhněte tady:</p>
+                            <a href="jak-mluvit-s-AI-KPZ-prirucka.pdf" download class="cta-button"
+                                style="background: var(--primary-color); width: 100%; box-shadow: none; font-size: 1.1em;">Stáhnout
+                                teď hned (.pdf)</a>
                         </div>
                     </div>
                 </div>
@@ -374,8 +483,20 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
             <p style="font-size: 1.1em;">Advokát pro váš byznys & Lektor generativního AI</p>
             <p style="opacity: 0.6; margin-bottom: 20px;">Materiály pro konferenci Nové začátky 2026</p>
             <div class="social-icons-container" style="justify-content: center;">
-                <a href="https://www.linkedin.com/in/gabrielko%C5%BE%C3%ADk/" target="_blank" class="social-icon" aria-label="LinkedIn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                <a href="mailto:info@gabrielkozik.cz" class="social-icon" aria-label="E-mail"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: white;"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a>
+                <a href="https://www.linkedin.com/in/gabrielko%C5%BE%C3%ADk/" target="_blank" class="social-icon"
+                    aria-label="LinkedIn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="color: white;">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg></a>
+                <a href="mailto:info@gabrielkozik.cz" class="social-icon" aria-label="E-mail"><svg width="28"
+                        height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="color: white;">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg></a>
             </div>
             <div class="copyright">
                 &copy; 2026 Mgr. Gabriel Kožík. Vytvořeno pro vzdělávací účely.
@@ -397,7 +518,7 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
         function updatePrompt() {
             p1Out.value = `Role: Jsi ${roleSel.value}.\n\nCíl: Potřebuji zadat úkol: ${taskSel.value}.\n\nKontext: ${audSel.value}\n\nVýstup: ${formSel.value}. Pokud si nejsi něčím jistý nebo potřebuješ více informací k mému byznysu, doptáš se mě.`;
         }
-        
+
         [roleSel, taskSel, audSel, formSel].forEach(s => s.addEventListener('change', updatePrompt));
         updatePrompt();
 
@@ -409,7 +530,7 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
         const lDevil = document.getElementById('label-devil');
 
         aiToggle.addEventListener('change', (e) => {
-            if(e.target.checked) {
+            if (e.target.checked) {
                 vFriend.style.display = 'none';
                 vDevil.style.display = 'block';
                 lDevil.style.color = '#ef4444';
@@ -434,18 +555,18 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
         function calcROI() {
             const tasksPerWeek = parseInt(tSlider.value);
             tCount.innerText = tasksPerWeek;
-            
+
             // Kolik prumerne tasku za mesic (tyden * 4)
             const tasksPerMonth = tasksPerWeek * 4;
             // 15 minut uspora za kazdy task = 15/60 = 1/4 hodin
-            const hours = Math.round(tasksPerMonth * (15/60));
+            const hours = Math.round(tasksPerMonth * (15 / 60));
             hSaved.innerText = hours;
-            
+
             // Update color
-            if(hours > 40) hSaved.style.color = '#ef4444'; // Red for critical time waste
+            if (hours > 40) hSaved.style.color = '#ef4444'; // Red for critical time waste
             else hSaved.style.color = 'var(--accent-color)';
         }
-        
+
         tSlider.addEventListener('input', calcROI);
         calcROI(); // Init
 
@@ -457,7 +578,7 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
 
             textarea.select();
             textarea.setSelectionRange(0, 99999);
-            
+
             try {
                 document.execCommand("copy");
                 btn.innerHTML = `<i data-lucide="check" style="width: 18px;"></i>Zkopírováno ✅`;
@@ -477,7 +598,7 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
         }
 
         // Form Submit Simulation
-        document.getElementById('lead-form').addEventListener('submit', function(e) {
+        document.getElementById('lead-form').addEventListener('submit', function (e) {
             e.preventDefault();
             document.getElementById('form-state').style.display = 'none';
             const sv = document.getElementById('success-state');
@@ -485,4 +606,5 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
         });
     </script>
 </body>
+
 </html>
