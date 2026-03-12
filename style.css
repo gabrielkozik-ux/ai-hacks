@@ -22,6 +22,12 @@
     box-sizing: border-box;
 }
 
+/* Accessibility: Focus Visible */
+:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -46,6 +52,8 @@ h6,
     font-family: 'Space Grotesk', sans-serif;
     letter-spacing: -0.03em;
     color: var(--primary-color);
+    line-height: 1.3;
+    /* Increased for better legibility */
 }
 
 a {
@@ -71,7 +79,8 @@ figure {
 }
 
 section {
-    padding: 80px 20px;
+    padding: clamp(4rem, 8vw, 8rem) 20px;
+    /* Dynamic padding for better whitespace */
     scroll-margin-top: 70px;
 }
 
@@ -316,7 +325,8 @@ section:nth-child(2n) {
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    /* Enhanced shadow for better affordance */
     color: var(--white);
 }
 
