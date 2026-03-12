@@ -78,6 +78,11 @@ figure {
     padding: 20px;
 }
 
+.container-wide {
+    max-width: 1800px !important;
+    width: 96%;
+}
+
 section {
     padding: clamp(4rem, 8vw, 8rem) 20px;
     /* Dynamic padding for better whitespace */
@@ -92,9 +97,9 @@ section:nth-child(2n) {
    3. NAVIGATION
    ========================================= */
 .main-nav {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    padding: 15px 20px;
+    padding: 12px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     position: fixed;
     top: 0;
@@ -102,17 +107,26 @@ section:nth-child(2n) {
     width: 100%;
     z-index: 1000;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
+.main-nav .container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+    width: 100%;
+    max-width: 1800px;
+}
+
 .nav-logo {
-    font-weight: 700;
-    font-size: 1.3em;
+    font-weight: 600;
+    font-size: 1.15em;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     color: var(--primary-color);
+    letter-spacing: -0.01em;
 }
 
 .nav-photo {
@@ -130,11 +144,10 @@ section:nth-child(2n) {
 
 .nav-links a {
     color: var(--primary-color);
-    font-weight: 700;
-    /* Tučnější */
-    margin: 0 15px;
-    font-size: 1.15em;
-    /* ZVĚTŠENO písmo v menu */
+    font-weight: 600;
+    margin-left: 30px;
+    /* Only left margin to push them apart */
+    font-size: 1.05em;
 }
 
 .nav-links a:hover {
