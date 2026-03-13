@@ -597,14 +597,33 @@ Zhodnoť můj následující nápad tvrdě a věcně a najdi 3 rizika, na který
             window.getSelection().removeAllRanges();
         }
 
-        // Form Submit Simulation
-        document.getElementById('lead-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            document.getElementById('form-state').style.display = 'none';
-            const sv = document.getElementById('success-state');
-            sv.style.display = 'block';
-        });
+        // Odeslání e-mailu do Make.com
+document.getElementById('lead-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    // Získání e-mailu z inputu
+    const emailInput = document.querySelector('#lead-form input[type="email"]').value;
+    
+    // Odeslání na Make Webhook
+    fetch('https://hook.eu2.make.com/esf8dwbjop8y75cakr41dp99y5pvbi76', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: emailInput })
+    })
+    .then(response => {
+        // Skrytí formuláře a zobrazení úspěšné hlášky
+        document.getElementById('form-state').style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Chyba při odesílání:', error);
+        alert('Něco se pokazilo, zkuste to prosím znovu.');
+    });
+});
     </script>
 </body>
+
 
 </html>
